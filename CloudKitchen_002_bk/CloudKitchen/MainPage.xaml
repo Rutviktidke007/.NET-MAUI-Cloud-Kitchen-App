@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CloudKitchen.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Image
+                Source="brooke_unsplash.jpg"
+                Aspect="AspectFit"
+                SemanticProperties.Description="home cooked meal set on a table" />
+
+            <Label
+                x:Name="Headline"
+                Text="Cloud Kitchen"
+                Style="{StaticResource MassiveHeadline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+            <Label
+                x:Name="StatusMessage"
+                Text="Getting things ready..."
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Getting things ready..." />
+
+            <ActivityIndicator x:Name="LoadingIndicator" IsVisible="False" IsRunning="False" />
+            
+            <Button
+                x:Name="LoginBtn"
+                IsVisible="False"
+                Text="Login to continue..." 
+                SemanticProperties.Hint="Login"
+                Clicked="OnLoginClicked"
+                HorizontalOptions="Fill" />
+
+            <Button
+                x:Name="AddBtn"
+                IsVisible="False"
+                Text="Add Food Item..." 
+                SemanticProperties.Hint="Add Food Item..."
+                Clicked="OnAddFoodItemClicked"
+                HorizontalOptions="Fill" />
+            
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

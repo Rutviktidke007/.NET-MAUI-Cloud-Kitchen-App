@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CloudKitchen.Pages.LoginPage"
+             Title="Login">
+    <ScrollView>
+        <VerticalStackLayout
+            VerticalOptions="Center"
+            Padding="30,0"
+            Spacing="25">    
+           
+        
+            <Label 
+                Text="Login to Cloud Kitchen"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                Style="{StaticResource SubHeadline}"/>
+
+            <Entry
+                x:Name="EntryEmail"
+                Placeholder="Email"/>
+             <Entry
+                x:Name="EntryPassword"
+                Placeholder="Password"
+                IsPassword="True"/>
+
+             <HorizontalStackLayout
+                HorizontalOptions="Center">
+                    <Label
+                        Text="Remember my details:   "
+                        VerticalOptions="Center"/>
+                    <CheckBox
+                        x:Name="RememberMeCheckbox"
+                        VerticalOptions="Center"/>
+             </HorizontalStackLayout>
+
+             <Button 
+                Text="Login" 
+                FontAttributes="Bold"
+                Clicked="LoginButton_Clicked"/>
+             
+            <Label
+                Text="Don't have an account? Create one now!"
+                HorizontalOptions="Center"
+                Padding="20" />
+            
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

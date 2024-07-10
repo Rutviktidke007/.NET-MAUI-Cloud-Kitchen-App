@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="CloudKitchen.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:CloudKitchen"
+    xmlns:pages="clr-namespace:CloudKitchen.Pages"
+    Shell.FlyoutBehavior="Flyout"
+    Title="CloudKitchen">
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+    <ShellContent
+        Title="All Food Items"
+        ContentTemplate="{DataTemplate pages:FoodItemsListPage}"
+        Route="FoodItemsListPage" />
+    
+
+    <ShellContent
+        Title="Privacy Policy"
+        ContentTemplate="{DataTemplate pages:PrivacyPolicyPage}"
+        Route="PrivacyPolicyPage" />
+    
+    <ShellContent
+        Title="Terms and Conditions"
+        ContentTemplate="{DataTemplate pages:TermsConditionsPage}"
+        Route="TermsConditionsPage" />
+
+
+
+</Shell>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CloudKitchen.Pages.AddFoodItem"
+             xmlns:maps="http://schemas.microsoft.com/dotnet/2021/maui/maps"
+             Title="Add Food Item">
+    <ScrollView>
+        <VerticalStackLayout
+            VerticalOptions="Center"
+            Padding="30,0"
+            Spacing="5">
+
+            <maps:Map
+                x:Name="MapControl"
+                HorizontalOptions="FillAndExpand"
+                IsShowingUser="True"
+                IsTrafficEnabled="False"
+                Margin="10"
+                MapClicked="MapControl_MapClicked"
+                HeightRequest="250"/>
+
+            <Button
+                x:Name="LocationButton"
+                Text="Get Location"
+                Clicked="LocationButton_Clicked"/>
+
+            <Entry
+                Placeholder="Title: "
+                Text="{Binding Title}"/>
+
+            <Label
+                x:Name ="Price"
+                HorizontalTextAlignment="Center"
+                TextColor="Green"
+                FontAttributes="Bold"
+                Text="{Binding Price , StringFormat='{0:F2}'}"/>
+            <Slider 
+                x:Name="Slider"
+                Minimum="1.00"
+                Maximum="500"
+                MinimumTrackColor ="Green"
+                ValueChanged="OnSliderValueChanged" />
+
+            <Editor
+                Placeholder="Description: "
+                HeightRequest="100"
+                Text="{Binding Description}"/>
+
+            <Frame
+               BorderColor="Black"
+               WidthRequest="256"
+               HeightRequest="256"
+               Padding="0"
+               CornerRadius="14">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="AddImageFrame_Tapped"/>
+                </Frame.GestureRecognizers>
+
+                <AbsoluteLayout>
+                    <Label
+                       AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                       AbsoluteLayout.LayoutFlags="All"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontAttributes="Bold"
+                       Text="Add an Image"/>
+                    <Image
+                       x:Name="FoodImage"
+                       Source="{Binding ImageSource}"
+                       Aspect="AspectFill"
+                       AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                       AbsoluteLayout.LayoutFlags="All"/>
+                </AbsoluteLayout>
+            </Frame>
+
+            <Label
+                x:Name="ErrorLabel"
+                TextColor="Red"/>
+
+            <Grid
+                Margin="0, 0, 0, 30"
+                ColumnDefinitions="*, *">
+                <!--Only display either cancel OR delete button at once, so they are in the same column-->
+
+                <!--Set IsVisible to False by default, then use a datatrigger to set it True if
+                the quest has NOT been saved-->
+                <Button
+                    Grid.Column="0"
+                    IsVisible="False"                    
+                    x:Name="CancelButton"
+                    Text="Cancel"
+                    Margin="0,0,5,0"
+                    Clicked="CancelButton_Clicked">
+                    <Button.Triggers>
+                        <DataTrigger
+                            TargetType="Button"
+                            Binding="{Binding Id}"
+                            Value="0">
+                            <Setter
+                                Property="IsVisible"
+                                Value="True"/>
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+                <!--Set IsVisible to True by default, then use a datatrigger to set it False if
+                the quest HAS been saved-->
+                <Button
+                    Grid.Column="0"                    
+                    x:Name="DeleteButton"
+                    Text="Delete"
+                    Margin="0,0,5,0"
+                    Clicked="DeleteButton_Clicked">
+                    <Button.Triggers>
+                        <DataTrigger
+                            TargetType="Button"
+                            Binding="{Binding Id}"
+                            Value="0">
+                            <Setter
+                                Property="IsVisible"
+                                Value="False"/>
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+
+                <Button
+                    Grid.Column="1"
+                    x:Name="SaveButton"
+                    Text="Save"
+                    Margin="5,0,0,0"
+                    Clicked="SaveButton_Clicked"/>
+            </Grid>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

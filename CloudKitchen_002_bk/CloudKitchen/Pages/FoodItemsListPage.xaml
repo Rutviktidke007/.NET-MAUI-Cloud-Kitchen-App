@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CloudKitchen.Pages.FoodItemsListPage"
+             Title="Food Items List">
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            <Label 
+                Text="Current offers"
+                Style="{StaticResource SubHeadline}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+
+            <Button
+                x:Name="AddBtn"
+                IsVisible="True"
+                Text="Add Food Item..." 
+                SemanticProperties.Hint="Add Food Item..."
+                Clicked="OnAddFoodItemClicked"
+                HorizontalOptions="Fill" />
+
+
+            <!--Specify the list of objects to display (from FoodItems)-->
+            <VerticalStackLayout
+                BindableLayout.ItemsSource="{Binding items}">
+                <!--Provide an error message if there are no quests saved  to display yet-->
+                <BindableLayout.EmptyView>
+                    <StackLayout>
+                        <Label
+                            Text="There is no current quests to display"
+                            Style="{StaticResource ErrorLabel}"/>
+                    </StackLayout>
+                </BindableLayout.EmptyView>
+                <!--Define the template to use for each object-->
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <!--Make a pretty border around the layout-->
+                        <Border
+                            Stroke="{StaticResource Primary}"
+                            StrokeThickness="2"
+                            Background="{StaticResource EntryBackgroundColor}"
+                            Padding="8"
+                            Margin="0, 2"
+                            StrokeShape="RoundRectangle 10,10,0,10">
+                            <VerticalStackLayout>
+                                <!--ADD GESTURERECOGNIZER HERE-->
+                                <!--Add a tap event to the layout so we can select the object-->
+                                <VerticalStackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="FoodListing_Tapped"/>
+                                    <SwipeGestureRecognizer Direction="Right" Swiped="FoodListing_Swiped"/>
+                                    <SwipeGestureRecognizer Direction="Left" Swiped="FoodListing_Swiped"/>
+                                </VerticalStackLayout.GestureRecognizers>
+                                <Label>
+                                    <Label.FormattedText>
+                                        <!--Use FormattedText and StringFormat to nicely 
+                                        display the formatted date and time-->
+                                        <FormattedString>
+                                            <Span
+                                                Text="{Binding Price, StringFormat='{0:F2}'}"
+                                                FontAttributes="Bold"/>
+                                            <Span Text=" - " />
+                                            <Span 
+                                                Text="{Binding Title}"
+                                                TextColor="DarkBlue"
+                                                FontAttributes="Bold"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>                               
+                                <Label
+                                    Text="{Binding Description}"
+                                    FontAttributes="Italic"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
